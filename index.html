@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignacio Ferreiro | Periodista de Datos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #2ecc71;
+            --secondary: #7f8c8d;
+            --light-grey: #f9f9f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text); 
+            background-color: var(--bg);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        header { margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        header h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 5px; }
+        .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .contact-info { margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap; font-size: 0.9rem; color: var(--secondary); }
+        .contact-info a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+        .contact-info a:hover { border-bottom: 1px solid var(--accent); }
+
+        section { margin-bottom: 60px; }
+        h2 { font-size: 1.5rem; margin-bottom: 30px; border-left: 4px solid var(--accent); padding-left: 15px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Experiencia */
+        .job { margin-bottom: 30px; }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .job-title { font-weight: 700; font-size: 1.1rem; }
+        .job-date { color: var(--secondary); font-size: 0.9rem; }
+        .job-company { color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+        .job ul { list-style: none; margin-top: 10px; }
+        .job ul li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .job ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+        /* Proyectos */
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .project-card { background: var(--light-grey); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+        @media (min-width: 768px) { .project-card { flex-direction: row; } }
+        
+        .project-img { flex: 1; background: #ddd; min-height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .project-content { flex: 1.2; padding: 25px; }
+        .project-content h3 { margin-bottom: 10px; font-size: 1.2rem; }
+        .project-content p { font-size: 0.95rem; color: #444; margin-bottom: 15px; }
+        .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .tool-tag { font-size: 0.75rem; background: #e0e0e0; padding: 3px 10px; border-radius: 15px; color: #555; }
+        .project-link { font-weight: 600; color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+
+        /* Premios */
+        .award-item { margin-bottom: 20px; padding: 15px; border-left: 2px solid #eee; }
+        .award-title { font-weight: 700; }
+        .award-desc { font-size: 0.9rem; color: var(--secondary); }
+
+        /* Skills */
+        .skills-list { display: flex; gap: 20px; flex-wrap: wrap; }
+        .skill-cat { font-weight: 700; color: var(--accent); }
+
+        footer { text-align: center; color: var(--secondary); font-size: 0.8rem; margin-top: 100px; padding-bottom: 40px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Ignacio Ferreiro</h1>
+        <p class="subtitle">Data Journalist</p>
+        <div class="contact-info">
+            <span><i class="fas fa-envelope"></i> ignc.ferreiro@gmail.com</span>
+            <span><i class="fab fa-linkedin"></i> <a href="#">Ignacio Ferreiro</a></span>
+            <span><i class="fab fa-twitter"></i> @igncferreiro</span>
+            <span><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</span>
+        </div>
+    </header>
+
+    <section id="experience">
+        <h2>Experiencia</h2>
+        
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">Data Journalism Coordinator</span>
+                <span class="job-date">Dic 2021 - Presente</span>
+            </div>
+            <div class="job-company">Chequeado</div>
+            <ul>
+                <li>Liderazgo en contenido para redes sociales y notas basadas en datos interactivos.</li>
+                <li>Análisis de métricas para optimización de estrategias editoriales.</li>
+                <li>Desarrollo de proyectos long-form (Monitor de vacunación COVID-19, PDF scrapers en R).</li>
+                <li>UX Research enfocado en productos editoriales como Chequeado AI Assistant.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">Data Journalist</span>
+                <span class="job-date">Feb 2018 - Nov 2021</span>
+            </div>
+            <div class="job-company">A24.com (América Group)</div>
+            <ul>
+                <li>Responsable de todo el proceso de datos: acceso, limpieza (R, Python, Excel) y análisis.</li>
+                <li>Creación de visualizaciones interactivas con Flourish y Tableau.</li>
+                <li>Distribución estratégica de historias de datos en plataformas sociales.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Proyectos Destacados</h2>
+        <div class="project-grid">
+
+            <!-- Proyecto 1: DDJJ -->
+            <div class="project-card">
+                <div class="project-img">
+                    <!-- INSERTAR GIF AQUÍ -->
+                    <img src="assets/ddjj-legisladores.gif" alt="Visualización DDJJ" onerror="this.src='https://via.placeholder.com/400x250?text=GIF+Visualización+DDJJ'">
+                </div>
+                <div class="project-content">
+                    <h3>Patrimonio de Legisladores</h3>
+                    <p>Análisis exhaustivo de las declaraciones juradas de diputados y senadores nacionales, permitiendo a los ciudadanos consultar el patrimonio uno por uno.</p>
+                    <div class="tools">
+                        <span class="tool-tag">R (Scraping)</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Datawrapper</span>
+                        <span class="tool-tag">OpenRefine</span>
+                    </div>
+                    <a href="https://chequeado.com/el-explicador/las-declaraciones-juradas-de-los-diputados-nacionales-uno-por-uno-que-patrimonio-declararon-los-legisladores/" target="_blank" class="project-link">Ver nota Diputados →</a><br>
+                    <a href="https://chequeado.com/el-explicador/las-declaraciones-juradas-de-senadores-nacionales-uno-por-uno-que-patrimonio-declararon-los-legisladores/" target="_blank" class="project-link">Ver nota Senadores →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Insultos Milei -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/milei-insultos.gif" alt="Análisis Discurso Milei" onerror="this.src='https://via.placeholder.com/400x250?text=GIF+Análisis+Discurso'">
+                </div>
+                <div class="project-content">
+                    <h3>Análisis de Agravios Presidenciales</h3>
+                    <p>Investigación sobre el discurso de Javier Milei. Identificación de más de mil ataques a políticos, periodistas y economistas durante sus primeros 14 meses de gestión.</p>
+                    <div class="tools">
+                        <span class="tool-tag">NLP</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">Visualización de Datos</span>
+                    </div>
+                    <a href="https://chequeado.com/el-explicador/el-insulto-en-el-discurso-de-javier-milei-mas-de-mil-agravios-a-politicos-periodistas-y-economistas-en-14-meses-de-gestion/" target="_blank" class="project-link">Ver nota histórica →</a><br>
+                    <a href="https://chequeado.com/el-explicador/un-insulto-cada-100-segundos-el-discurso-de-milei-en-el-congreso-duplico-los-ataques-de-2025/" target="_blank" class="project-link">Análisis Congreso 2025 →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 3: Colectivos AMBA -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/colectivos-amba.gif" alt="Quejas Colectivos" onerror="this.src='https://via.placeholder.com/400x250?text=GIF+Ranking+Colectivos'">
+                </div>
+                <div class="project-content">
+                    <h3>Ranking de Denuncias: Colectivos AMBA</h3>
+                    <p>Procesamiento de casi 100 denuncias diarias contra líneas de colectivo. Un análisis de los principales motivos de reclamo de los usuarios.</p>
+                    <div class="tools">
+                        <span class="tool-tag">Análisis de Datos</span>
+                        <span class="tool-tag">Flourish</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <a href="https://chequeado.com/el-explicador/casi-100-denuncias-por-dia-contra-los-colectivos-del-amba-el-ranking-de-las-lineas-que-reciben-mas-reclamos-y-los-principales-motivos/" target="_blank" class="project-link">Ver investigación →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 4: Mapa del Delito -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/mapa-delito.gif" alt="Mapa del Delito" onerror="this.src='https://via.placeholder.com/400x250?text=GIF+Mapa+del+Delito'">
+                </div>
+                <div class="project-content">
+                    <h3>Mapa del Delito en CABA</h3>
+                    <p>Mapeo geográfico de los puntos calientes del crimen en Buenos Aires, utilizando datos oficiales para identificar las zonas con mayor siniestralidad.</p>
+                    <div class="tools">
+                        <span class="tool-tag">QGIS</span>
+                        <span class="tool-tag">Digital Cartography</span>
+                        <span class="tool-tag">R</span>
+                    </div>
+                    <a href="https://www.a24.com/actualidad/mapa-delito-zonas-ciudad-mayor-cantidad-episodios-ultimos-anos-01092019_SJcHHtGz4" target="_blank" class="project-link">Ver mapa interactivo →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="awards">
+        <h2>Premios y Reconocimientos</h2>
+        
+        <div class="award-item">
+            <div class="award-title">SIP (Sociedad Interamericana de Prensa) – 2024</div>
+            <div class="award-desc">Mención Honorífica en el Premio a la Excelencia Periodística. Categoría: Visualización de datos. Trabajo: “La Argentina, en 10 datos claves”.</div>
+        </div>
+
+        <div class="award-item">
+            <div class="award-title">ADEPA 2024</div>
+            <div class="award-desc">Mención especial (Trabajo en equipo). Trabajo: “El gobierno de Javier Milei: datos sobre el impacto de sus medidas”.</div>
+        </div>
+
+        <div class="award-item">
+            <div class="award-title">ADEPA - Multimedia e Infografías</div>
+            <div class="award-desc">Mención especial por el proyecto “Insultos en el discurso de Javier Milei”.</div>
+        </div>
+
+        <div class="award-item">
+            <div class="award-title">GIJN (Global Investigative Journalism Network)</div>
+            <div class="award-desc">Premio a dos historias: Mapeo de hotspots de crimen en Buenos Aires y Acceso a internet en la Patagonia.</div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Habilidades Técnicas</h2>
+        <div class="skills-list">
+            <div><span class="skill-cat">Programación:</span> R (Avanzado), Python.</div>
+            <div><span class="skill-cat">Visualización:</span> Flourish, Tableau, Datawrapper.</div>
+            <div><span class="skill-cat">Herramientas:</span> OpenRefine, QGIS, Cartografía Digital.</div>
+            <div><span class="skill-cat">Idiomas:</span> Español (Nativo), Inglés (C1), Portugués.</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Ignacio Ferreiro - Periodismo de Datos</p>
+    </footer>
+</div>
+
+</body>
+</html>
