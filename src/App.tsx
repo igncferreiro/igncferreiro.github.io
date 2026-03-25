@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Briefcase, FolderGit2, Award, Mail, Linkedin, Twitter, ExternalLink, Image as ImageIcon, GraduationCap, Send } from 'lucide-react';
+import { Briefcase, FolderGit2, Award, Mail, Linkedin, Twitter, ExternalLink, Image as ImageIcon, GraduationCap, Send, Globe } from 'lucide-react';
 import { portfolioData } from './data';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('experience');
+  const [lang, setLang] = useState<'en' | 'es'>('en');
 
   // Handle scroll spy to update active section in sidebar
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['experience', 'education', 'projects', 'awards', 'contact'];
+      const sections = ['experience', 'projects', 'awards', 'education', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -36,14 +37,54 @@ export default function App() {
     }
   };
 
+  const data = portfolioData[lang];
+
+  const t = {
+    en: {
+      experience: "Experience",
+      projects: "Selected Projects",
+      awards: "Awards & Recognition",
+      education: "Education",
+      contact: "Get in Touch",
+      contactTitle: "Let's work together",
+      contactDesc: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+      contactBtn: "Send me an email",
+      rights: "All rights reserved."
+    },
+    es: {
+      experience: "Experiencia",
+      projects: "Proyectos Destacados",
+      awards: "Premios y Reconocimientos",
+      education: "Educación",
+      contact: "Contacto",
+      contactTitle: "Trabajemos juntos",
+      contactDesc: "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tu visión.",
+      contactBtn: "Enviame un email",
+      rights: "Todos los derechos reservados."
+    }
+  };
+
+  const text = t[lang];
+
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-zinc-900 font-sans flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#FAFAFA] text-zinc-900 font-sans flex flex-col md:flex-row relative">
       
+      {/* Language Toggle */}
+      <div className="fixed top-6 right-6 z-50">
+        <button
+          onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
+          className="flex items-center gap-2 bg-white/90 backdrop-blur-md border border-zinc-200 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all text-sm font-bold text-zinc-700 hover:text-zinc-900"
+        >
+          <Globe size={16} />
+          {lang === 'en' ? 'ES' : 'EN'}
+        </button>
+      </div>
+
       {/* Left Sidebar Navigation */}
       <aside className="w-full md:w-64 lg:w-72 md:fixed md:h-screen border-b md:border-b-0 md:border-r border-zinc-200 bg-white p-8 flex flex-col justify-between z-10">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight mb-1">{portfolioData.personal.name}</h1>
-          <p className="text-zinc-500 font-medium mb-10">{portfolioData.personal.role}</p>
+          <h1 className="text-2xl font-bold tracking-tight mb-1">{data.personal.name}</h1>
+          <p className="text-zinc-500 font-medium mb-10">{data.personal.role}</p>
           
           <nav className="flex flex-col gap-2">
             <button 
@@ -51,47 +92,47 @@ export default function App() {
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'experience' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
             >
               <Briefcase size={18} />
-              Experience
-            </button>
-            <button 
-              onClick={() => scrollToSection('education')}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'education' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
-            >
-              <GraduationCap size={18} />
-              Education
+              {text.experience}
             </button>
             <button 
               onClick={() => scrollToSection('projects')}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'projects' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
             >
               <FolderGit2 size={18} />
-              Projects
+              {text.projects}
             </button>
             <button 
               onClick={() => scrollToSection('awards')}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'awards' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
             >
               <Award size={18} />
-              Awards
+              {text.awards}
+            </button>
+            <button 
+              onClick={() => scrollToSection('education')}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'education' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
+            >
+              <GraduationCap size={18} />
+              {text.education}
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'contact' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
             >
               <Mail size={18} />
-              Contact
+              {text.contact}
             </button>
           </nav>
         </div>
 
         <div className="mt-10 md:mt-0 flex gap-4 text-zinc-400">
-          <a href={`mailto:${portfolioData.personal.email}`} className="hover:text-zinc-900 transition-colors" aria-label="Email">
+          <a href={`mailto:${data.personal.email}`} className="hover:text-zinc-900 transition-colors" aria-label="Email">
             <Mail size={20} />
           </a>
-          <a href={portfolioData.personal.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="LinkedIn">
+          <a href={data.personal.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="LinkedIn">
             <Linkedin size={20} />
           </a>
-          <a href={portfolioData.personal.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="Twitter">
+          <a href={data.personal.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="Twitter">
             <Twitter size={20} />
           </a>
         </div>
@@ -104,11 +145,11 @@ export default function App() {
         <section id="experience" className="mb-32 scroll-mt-16">
           <div className="flex items-center gap-3 mb-10">
             <Briefcase className="text-zinc-400" size={24} />
-            <h2 className="text-3xl font-bold tracking-tight">Experience</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{text.experience}</h2>
           </div>
           
           <div className="space-y-12">
-            {portfolioData.experience.map((job) => (
+            {data.experience.map((job) => (
               <div key={job.id} className="relative pl-6 md:pl-0">
                 <div className="hidden md:block absolute left-[-41px] top-2 w-3 h-3 bg-zinc-200 rounded-full border-4 border-[#FAFAFA]"></div>
                 <h3 className="text-xl font-semibold">{job.role}</h3>
@@ -128,38 +169,15 @@ export default function App() {
           </div>
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="mb-32 scroll-mt-16">
-          <div className="flex items-center gap-3 mb-10">
-            <GraduationCap className="text-zinc-400" size={24} />
-            <h2 className="text-3xl font-bold tracking-tight">Education</h2>
-          </div>
-          
-          <div className="space-y-12">
-            {portfolioData.education.map((edu) => (
-              <div key={edu.id} className="relative pl-6 md:pl-0">
-                <div className="hidden md:block absolute left-[-41px] top-2 w-3 h-3 bg-zinc-200 rounded-full border-4 border-[#FAFAFA]"></div>
-                <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                <div className="text-sm text-zinc-500 mb-4 mt-1 font-medium">
-                  {edu.institution} <span className="mx-2">•</span> {edu.period}
-                </div>
-                <p className="text-zinc-600 leading-relaxed">
-                  {edu.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Projects Section */}
         <section id="projects" className="mb-32 scroll-mt-16">
           <div className="flex items-center gap-3 mb-10">
             <FolderGit2 className="text-zinc-400" size={24} />
-            <h2 className="text-3xl font-bold tracking-tight">Selected Projects</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{text.projects}</h2>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
-            {portfolioData.projects.map((project) => (
+            {data.projects.map((project) => (
               <article key={project.id} className="group flex flex-col bg-white rounded-2xl border border-zinc-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 {/* Prominent GIF Placeholder / Image */}
                 <div className="aspect-[16/10] bg-zinc-100 flex flex-col items-center justify-center text-zinc-400 border-b border-zinc-100 relative overflow-hidden">
@@ -231,11 +249,11 @@ export default function App() {
         <section id="awards" className="mb-16 scroll-mt-16">
           <div className="flex items-center gap-3 mb-10">
             <Award className="text-zinc-400" size={24} />
-            <h2 className="text-3xl font-bold tracking-tight">Awards & Recognition</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{text.awards}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {portfolioData.awards.map((award) => (
+            {data.awards.map((award) => (
               <div key={award.id} className="bg-white p-6 rounded-2xl border border-zinc-200 flex items-start gap-4">
                 <div className="p-3 bg-yellow-50 text-yellow-600 rounded-xl flex-shrink-0">
                   <Award size={24} />
@@ -250,30 +268,55 @@ export default function App() {
           </div>
         </section>
 
+        {/* Education Section */}
+        <section id="education" className="mb-32 scroll-mt-16">
+          <div className="flex items-center gap-3 mb-10">
+            <GraduationCap className="text-zinc-400" size={24} />
+            <h2 className="text-3xl font-bold tracking-tight">{text.education}</h2>
+          </div>
+          
+          <div className="space-y-12">
+            {data.education.map((edu) => (
+              <div key={edu.id} className="relative pl-6 md:pl-0">
+                <div className="hidden md:block absolute left-[-41px] top-2 w-3 h-3 bg-zinc-200 rounded-full border-4 border-[#FAFAFA]"></div>
+                <h3 className="text-xl font-semibold">{edu.degree}</h3>
+                <div className="text-sm text-zinc-500 mt-1 font-medium">
+                  {edu.institution} <span className="mx-2">•</span> {edu.period}
+                </div>
+                {(edu as any).description && (
+                  <p className="text-zinc-600 leading-relaxed mt-4">
+                    {(edu as any).description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" className="mb-32 scroll-mt-16">
           <div className="flex items-center gap-3 mb-10">
             <Mail className="text-zinc-400" size={24} />
-            <h2 className="text-3xl font-bold tracking-tight">Get in Touch</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{text.contact}</h2>
           </div>
 
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-zinc-200 shadow-sm text-center">
-            <h3 className="text-2xl font-bold mb-4">Let's work together</h3>
+            <h3 className="text-2xl font-bold mb-4">{text.contactTitle}</h3>
             <p className="text-zinc-600 mb-8 max-w-lg mx-auto">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+              {text.contactDesc}
             </p>
             <a 
-              href={`mailto:${portfolioData.personal.email}`}
+              href={`mailto:${data.personal.email}`}
               className="inline-flex items-center justify-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-xl font-semibold hover:bg-zinc-800 transition-colors hover:scale-105 duration-300"
             >
               <Send size={18} />
-              Send me an email
+              {text.contactBtn}
             </a>
           </div>
         </section>
         
         <footer className="pt-8 border-t border-zinc-200 text-center md:text-left text-sm text-zinc-500">
-          <p>© {new Date().getFullYear()} {portfolioData.personal.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {data.personal.name}. {text.rights}</p>
         </footer>
 
       </main>
