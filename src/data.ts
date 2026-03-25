@@ -3,7 +3,7 @@ export const portfolioData = {
     name: "Ignacio Ferreiro",
     role: "Data Journalist",
     email: "ignc.ferreiro@gmail.com",
-    linkedin: "https://linkedin.com/in/ignacio-ferreiro", // Update with actual URL if different
+    linkedin: "https://linkedin.com/in/igncferreiro", 
     twitter: "https://twitter.com/igncferreiro",
     github: "https://github.com/igncferreiro" // Optional, add if exists
   },
