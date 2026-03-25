@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Briefcase, FolderGit2, Award, Mail, Linkedin, Twitter, ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { Briefcase, FolderGit2, Award, Mail, Linkedin, Twitter, ExternalLink, Image as ImageIcon, GraduationCap, Send } from 'lucide-react';
 import { portfolioData } from './data';
 
 export default function App() {
@@ -8,7 +8,7 @@ export default function App() {
   // Handle scroll spy to update active section in sidebar
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['experience', 'projects', 'awards'];
+      const sections = ['experience', 'education', 'projects', 'awards', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -54,6 +54,13 @@ export default function App() {
               Experience
             </button>
             <button 
+              onClick={() => scrollToSection('education')}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'education' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
+            >
+              <GraduationCap size={18} />
+              Education
+            </button>
+            <button 
               onClick={() => scrollToSection('projects')}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'projects' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
             >
@@ -66,6 +73,13 @@ export default function App() {
             >
               <Award size={18} />
               Awards
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === 'contact' ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50'}`}
+            >
+              <Mail size={18} />
+              Contact
             </button>
           </nav>
         </div>
@@ -109,6 +123,29 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="mb-32 scroll-mt-16">
+          <div className="flex items-center gap-3 mb-10">
+            <GraduationCap className="text-zinc-400" size={24} />
+            <h2 className="text-3xl font-bold tracking-tight">Education</h2>
+          </div>
+          
+          <div className="space-y-12">
+            {portfolioData.education.map((edu) => (
+              <div key={edu.id} className="relative pl-6 md:pl-0">
+                <div className="hidden md:block absolute left-[-41px] top-2 w-3 h-3 bg-zinc-200 rounded-full border-4 border-[#FAFAFA]"></div>
+                <h3 className="text-xl font-semibold">{edu.degree}</h3>
+                <div className="text-sm text-zinc-500 mb-4 mt-1 font-medium">
+                  {edu.institution} <span className="mx-2">•</span> {edu.period}
+                </div>
+                <p className="text-zinc-600 leading-relaxed">
+                  {edu.description}
+                </p>
               </div>
             ))}
           </div>
@@ -210,6 +247,28 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="mb-32 scroll-mt-16">
+          <div className="flex items-center gap-3 mb-10">
+            <Mail className="text-zinc-400" size={24} />
+            <h2 className="text-3xl font-bold tracking-tight">Get in Touch</h2>
+          </div>
+
+          <div className="bg-white p-8 md:p-12 rounded-3xl border border-zinc-200 shadow-sm text-center">
+            <h3 className="text-2xl font-bold mb-4">Let's work together</h3>
+            <p className="text-zinc-600 mb-8 max-w-lg mx-auto">
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+            <a 
+              href={`mailto:${portfolioData.personal.email}`}
+              className="inline-flex items-center justify-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-xl font-semibold hover:bg-zinc-800 transition-colors hover:scale-105 duration-300"
+            >
+              <Send size={18} />
+              Send me an email
+            </a>
           </div>
         </section>
         

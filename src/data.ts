@@ -3,7 +3,7 @@ export const portfolioData = {
     name: "Ignacio Ferreiro",
     role: "Data Journalist",
     email: "ignc.ferreiro@gmail.com",
-    linkedin: "https://linkedin.com/in/igncferreiro", 
+    linkedin: "https://linkedin.com/igncferreiro", // Update with actual URL if different
     twitter: "https://twitter.com/igncferreiro",
     github: "https://github.com/igncferreiro" // Optional, add if exists
   },
@@ -32,7 +32,27 @@ export const portfolioData = {
       ]
     }
   ],
+  education: [
+    {
+      id: "uba-anthropology",
+      degree: "Licenciatura en Ciencias Antropológicas",
+      institution: "Universidad de Buenos Aires (UBA)",
+      period: "2013 - 2020",
+      description: "Focus on qualitative research methods, ethnography, and understanding human behavior in cultural contexts. This background provides a strong foundation for user research and understanding audience needs."
+    }
+  ],
   projects: [
+    {
+      id: "ux-research-chequeado",
+      title: "UX Research: Chequeado AI Assistant",
+      description: "Led the user experience research for Chequeado's AI Assistant. Applying my background as an anthropologist, I conducted qualitative interviews and usability testing to understand how journalists and fact-checkers interact with AI tools, ensuring the final product met real user needs.",
+      tools: ["UX Research", "Qualitative Interviews", "Usability Testing", "Anthropology"],
+      links: [
+        { text: "Learn more about the project →", url: "https://chequeado.com/" }
+      ],
+      gifPlaceholderText: "UX Research Process GIF",
+      imageSrc: "assets/ux-research.gif"
+    },
     {
       id: "ddjj",
       title: "Legislators' Financial Disclosures",
